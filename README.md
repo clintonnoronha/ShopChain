@@ -1,4 +1,5 @@
 # ShopChain
 ShopChain is an Android Application developed with Kotlin which helps local shopkeepers and their customers connect easily. It helps customers to check live activity of the shop, 
-call the shopkeeper or even message them in-app if needed. ShopChain goal is to bring about better connectivity between local stores and their customers through an online platform.
+call the shopkeeper or even message them in-app if needed. ShopChain goal is to bring about better connectivity between local stores and their customers through an online platform.Customers can use our application to learn about the live status of the store and connect to the store.The shopkeeper can set the shop's status to closed if he wants to go somewhere urgently or has an emergency. And if an item in the shop is not available, the shopkeeper can mark it as out of stock. As a result, our app will provide all customers with detailed information about the store, thereby improving the shopping experience. We have used Android Studio to develop the frontend of our app and Firebase for the backend.
+ShopChain is not limited to only Groceries,even Clinics, Restaurants, Household prodcuts shops can use our app. It will improve the interaction between the user and the store/clinic owner and will enhance the experience of local shopping.
 
