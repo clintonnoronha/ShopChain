@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.SettingsFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorPrimaryDark"
+                android:src="@drawable/default_user_image"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/usernameTextView"
+                style="@style/viewParent.headerText"
+                tools:text="Joe Doe"
+                android:textSize="18sp"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/mobileTextView"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                style="@style/viewParent.headerText"
+                tools:text="+91 1234567899"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:layout_below="@id/usernameTextView" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="@string/profile"/>
+
+        <TextView
+            android:id="@+id/txtScanToConnect"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:text="@string/scan_to_connect"
+            app:drawableStartCompat="@drawable/ic_baseline_qr_code_scanner_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtSetupBusinessAccount"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:text="@string/setup_business_account"
+                app:drawableStartCompat="@drawable/ic_baseline_store_24"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+            <TextView
+                android:id="@+id/txtManageBusinessAccount"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:visibility="gone"
+                android:text="@string/manage_business_account"
+                app:drawableStartCompat="@drawable/ic_baseline_store_24"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtChangePassword"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:layout_marginTop="10dp"
+            android:text="@string/change_password"
+            app:drawableStartCompat="@drawable/ic_baseline_lock_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:id="@+id/txtMyChats"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:layout_marginTop="10dp"
+            android:text="@string/my_chats"
+            app:drawableStartCompat="@drawable/ic_baseline_chat_bubble_outline_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground" />
+
+        <TextView
+            android:id="@+id/txtDeactivateAccount"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:layout_marginTop="10dp"
+            android:text="@string/deactivate_account"
+            app:drawableStartCompat="@drawable/ic_baseline_delete_forever_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsMiniTitle"
+            android:text="@string/regional"/>
+
+        <TextView
+            android:id="@+id/txtLanguage"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:text="@string/language"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableStartCompat="@drawable/ic_languages"
+            android:background="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:id="@+id/txtLogout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:text="@string/logout"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="60dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableStartCompat="@drawable/ic_logout"
+            android:background="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+</ScrollView>

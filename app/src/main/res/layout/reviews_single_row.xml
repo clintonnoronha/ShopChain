@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+        android:background="@drawable/rect"
+        android:weightSum="6">
+
+        <RelativeLayout
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtReviewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Nice!!"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/txtReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtReviewTitle"
+                tools:text="I visited this store few days ago after checking the status on ShopChain. Usually I didn't know if what I wanted was in stock but now I check before I visit. Thanks ShopChain for this experience!"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:padding="2dp" />
+
+            <TextView
+                android:id="@+id/txtStatic6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- A verified ShopChain User"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:padding="4dp"
+                tools:ignore="SmallSp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtReviewRatings"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="4.5"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            app:drawableLeftCompat="@drawable/ic_baseline_star_rate_24" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

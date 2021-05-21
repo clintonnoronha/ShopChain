@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#969EEE</color>
+    <color name="colorPrimaryDark">#555C96</color>
+    <color name="colorAccent">#969EEE</color>
+
+    <color name="linkColor">#0000EE</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- colors for intro button -->
+    <color name="gradient_start_color">#4C84FF</color>
+    <color name="gradient_end_color">#18A3FE</color>
+
+    <!-- colors for tab and screent text -->
+
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+
+    <color name="gray">#5D5C5C</color>
+    <color name="miniTitle">#2A2E43</color>
+
+    <color name="colorChatBackground">#DCDCDC</color>
+
+    <color name="colorLink">#2979ff</color>
+
+    <color name="colorSenderBubble">#d2f8d2</color>
+
+    <color name="opened">#357a38</color>
+    <color name="closed">#cf142b</color>
+
+</resources>

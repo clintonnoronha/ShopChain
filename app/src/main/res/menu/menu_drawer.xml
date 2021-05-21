@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/discover"
+            android:title="@string/discover"
+            android:icon="@drawable/ic_baseline_search_24"/>
+
+        <item
+            android:id="@+id/saved"
+            android:title="@string/saved_stores"
+            android:icon="@drawable/ic_baseline_bookmarks_24"/>
+
+        <item
+            android:id="@+id/settings"
+            android:title="@string/settings"
+            android:icon="@drawable/ic_baseline_settings_24"/>
+
+        <item
+            android:id="@+id/about_app"
+            android:title="@string/about_app"
+            android:icon="@drawable/ic_baseline_info_24"/>
+
+    </group>
+
+</menu>

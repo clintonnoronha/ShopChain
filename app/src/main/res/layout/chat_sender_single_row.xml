@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/txtSenderMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="4dp"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:textColorLink="@color/colorLink"
+        android:background="@drawable/outgoing_speech_bubble"
+        android:lineSpacingExtra="2dp"
+        android:maxWidth="300dp"
+        android:minWidth="60dp"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rlMedia"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/outgoing_speech_bubble"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_media"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/txtMediaName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Image.pdf"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/imgMedia"
+            android:singleLine="true"
+            android:ellipsize="middle"
+            android:maxWidth="240dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

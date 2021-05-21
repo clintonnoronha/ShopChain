@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.CreateBusinessAccountActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/app_logo_display"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="@string/kick_start_business"
+            android:textStyle=""
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/indigo_daisy"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/basic_details"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgStore"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/black"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_store_24"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSelectPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                app:elevation="2dp"
+                android:layout_alignBottom="@id/imgStore"
+                android:layout_alignEnd="@id/imgStore"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                android:background="@android:color/transparent"
+                app:rippleColor="@color/gray"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_shop_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/enter_store_name"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_baseline_store_24"
+            android:inputType="text"
+            android:background="@drawable/et_custom"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_shop_contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/enter_store_contact_number"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:inputType="phone"
+            android:background="@drawable/et_custom"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/et_shop_address"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.85"
+                android:hint="@string/enter_the_store_address"
+                android:padding="10dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_baseline_add_location_24"
+                android:inputType="text"
+                android:background="@drawable/et_custom"
+                android:textSize="15sp"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnShowMap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/map"
+                android:background="@drawable/et_custom"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/store_details"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"/>
+
+        <Spinner
+            android:id="@+id/spnStoreCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:prompt="@string/select_store_category"
+            android:spinnerMode="dialog"
+            android:layout_marginEnd="20dp"
+            android:visibility="visible"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/btnFinishSetup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/finish_setup"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+</ScrollView>

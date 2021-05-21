@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.StoreActivity"
+    android:background="@color/white">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llStore"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarStoreDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/bbContent"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/toolbarStoreDetails"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <ImageView
+                    android:id="@+id/ivStoreImage"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:padding="5dp"
+                    tools:src="@drawable/default_store_image"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerCrop"/>
+
+                <RelativeLayout
+                    android:layout_weight="3.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvStoreName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Store Name"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:padding="4dp"
+                        android:layout_marginTop="10dp"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tvStoreName">
+
+                        <TextView
+                            android:id="@+id/tvStoreDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Welcome to Nike Showroom. You can get the latest sports equipments here."
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:padding="4dp"/>
+
+                    </ScrollView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtStoreRatings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        tools:text="4.5"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        app:drawableLeftCompat="@drawable/ic_baseline_star_rate_24" />
+
+                    <ImageButton
+                        android:id="@+id/imgBtnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_add_24"
+                        android:layout_above="@id/txtSave"
+                        android:layout_marginBottom="6dp"
+                        android:background="@android:color/transparent"/>
+
+                    <TextView
+                        android:id="@+id/txtSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:text="@string/save"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <ImageButton
+                        android:id="@+id/imgBtnUnsave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_done_24"
+                        android:layout_above="@id/txtUnsave"
+                        android:visibility="gone"
+                        android:layout_marginBottom="6dp"
+                        android:background="@android:color/transparent"/>
+
+                    <TextView
+                        android:id="@+id/txtUnsave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:visibility="gone"
+                        android:text="@string/unsave"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/bbContent"/>
+
+            <TextView
+                android:id="@+id/txtStatic2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bbContent"
+                android:text="@string/store_details"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:padding="5dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/txtStatic2"/>
+
+            <LinearLayout
+                android:id="@id/llStoreDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtStatic2"
+                android:orientation="vertical"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:id="@+id/txtStoreStatus"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/viewParent.headerText.settingsTextIcon"
+                    tools:text="Open"
+                    android:textColor="@color/opened"
+                    app:drawableStartCompat="@drawable/ic_outline_status_24"
+                    android:background="?attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/txtTimings"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/viewParent.headerText.settingsTextIcon"
+                    tools:text="Timings: 9:00 am - 10:00 pm (MON - SUN)"
+                    app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"/>
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/viewParent.headerText.settingsTextIcon"
+                    tools:text="Shop No. 12, Fontana Road, Colva, Goa"
+                    app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/llStoreDetails"/>
+
+            <TextView
+                android:id="@+id/txtStatic4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llStoreDetails"
+                android:text="@string/products"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:padding="5dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/txtStatic4"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtStatic4"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/recyclerProducts"/>
+
+            <RelativeLayout
+                android:id="@+id/rlReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recyclerProducts">
+
+                <TextView
+                    android:id="@+id/txtStatic5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reviews"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_centerInParent="true"
+                    android:padding="5dp"/>
+
+                <ImageButton
+                    android:id="@+id/imgBtnReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/gray"
+                android:layout_below="@+id/rlReview"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerReviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlReview"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btnCallNow"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/call_now"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/ripple_effect"/>
+
+        <Button
+            android:id="@+id/btnChatNow"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/chat_now"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/ripple_effect"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

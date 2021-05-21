@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name" translatable="false">ShopChain</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="swipe_left_for_register">New? Click here to register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">Email</string>
+    <string name="tag">Shopping now made easy!</string>
+    <string name="swipe_right_for_login">Already Registered? Click here in login</string>
+    <string name="register">Register</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="generate_otp">Generate OTP</string>
+    <string name="verify">Verify</string>
+    <string name="select_language">Select your language</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="select_country">Select your Country</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_number">Mobile Number</string>
+    <string name="your_name">Full Name</string>
+    <string name="view_pager_title_one">"Connect Easily"</string>
+    <string name="view_pager_title_two">"Live Status"</string>
+    <string name="view_pager_title_three">"Hassle Free"</string>
+    <string name="view_pager_title_one_desc">"Connect with the shops around you, order various products or even book appointments with ease!"</string>
+    <string name="view_pager_title_two_desc">"Get live status of any store or contact the owner/staff with a single tap!"</string>
+    <string name="view_pager_title_three_desc">"Shopping or booking appointments now made hassle free!!\nWe are excited, are you?"</string>
+    <string name="get_started">Get Started</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="discover">Discover Stores</string>
+    <string name="saved_stores">Saved Stores</string>
+    <string name="about_app">About App</string>
+    <string name="settings">Settings</string>
+    <string name="action_search" translatable="false">search</string>
+    <string name="open_drawer" translatable="false">Open Drawer</string>
+    <string name="close_drawer" translatable="false">Close Drawer</string>
+    <string name="change_password" translatable="false">Change Password</string>
+    <string name="regional">Regional</string>
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
+    <string name="manage_business_account">Manage Business Account</string>
+    <string name="setup_business_account">Setup Business Account</string>
+    <string name="profile">Profile</string>
+    <string name="copyright_shopchain_2021" translatable="false">© ShopChain 2021</string>
+    <string name="deactivate_account">Deactivate Account</string>
+    <string name="kick_start_business">Let\'s get your business kick-started!!</string>
+    <string name="enter_store_name">Enter store name</string>
+    <string name="enter_store_contact_number">Enter store contact number</string>
+    <string name="enter_the_store_address">Enter the store address</string>
+    <string name="basic_details">Basic Details</string>
+    <string name="store_details">Store Details</string>
+    <string name="select_store_category">Select shop category</string>
+    <string name="finish_setup">Finish Setup</string>
+    <string name="access_store_location_alert">"ShopChain requires the location of the store so users can accurately find you. Please make sure you are at your store at the moment so that we can locate you before proceeding."</string>
+    <string name="attention">Attention!</string>
+    <string name="proceed">Proceed</string>
+    <string name="cancel">Cancel</string>
+    <string name="rationale_storage">Allow ShopChain to access photos, media, and files on you device?</string>
+    <string name="my_chats">My Chats</string>
+
+    <string name="title_activity_latest_messages" translatable="false">LatestMessagesActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="previous" translatable="false">Previous</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="sending_file">Sending File…</string>
+    <string name="download">Download</string>
+    <string name="copyright" translatable="false">© ShopChain 2021</string>
+    <string name="call_now">Call</string>
+    <string name="chat_now">Chat</string>
+    <string name="save">Save</string>
+    <string name="unsave">Unsave</string>
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+    <string name="no_information_available">No information Available</string>
+    <string name="current_status">Current Status : </string>
+    <string name="scan_to_connect">Scan to Connect</string>
+    <string name="scan_again">SCAN</string>
+    <string name="products">Products</string>
+    <string name="reviews">Reviews</string>
+    <string name="in_stock">In Stock</string>
+    <string name="out_of_stock">Out of Stock</string>
+</resources>
