@@ -3,7 +3,7 @@
     package="com.example.shopchain">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE" />
@@ -16,7 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopChain">
-        <activity android:name=".ui.main.ScanToConnectActivity"></activity>
+        <activity android:name=".ui.main.ManageBusinessAccountActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.HomeActivity" />
+        </activity>
+        <activity android:name=".ui.main.ScanToConnectActivity" />
         <activity android:name=".ui.main.StoreActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

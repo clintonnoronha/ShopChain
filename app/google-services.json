@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "353259204987",
+    "project_id": "shopchain-4fa1f",
+    "storage_bucket": "shopchain-4fa1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353259204987:android:8549891183e56545224dde",
+        "android_client_info": {
+          "package_name": "com.example.shopchain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353259204987-ihf9g0vt0k9t87pr00fj8ni63ma8arep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYQhO4dIhiEz8VgkekEJbpR8EfyPaP3Hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353259204987-ihf9g0vt0k9t87pr00fj8ni63ma8arep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

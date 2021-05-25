@@ -54,7 +54,7 @@
     <string name="attention">Attention!</string>
     <string name="proceed">Proceed</string>
     <string name="cancel">Cancel</string>
-    <string name="rationale_storage">Allow ShopChain to access photos, media, and files on you device?</string>
+    <string name="rationale_storage" translatable="false">Allow ShopChain to access photos, media, and files on you device?</string>
     <string name="my_chats">My Chats</string>
 
     <string name="title_activity_latest_messages" translatable="false">LatestMessagesActivity</string>

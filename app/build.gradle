@@ -103,7 +103,7 @@ dependencies {
     //include groupie for creating adapter faster
     implementation "com.xwray:groupie:2.1.0"
 
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
     implementation 'com.google.mlkit:barcode-scanning:16.1.1'
 

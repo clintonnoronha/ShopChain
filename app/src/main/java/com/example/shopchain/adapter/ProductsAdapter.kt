@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopchain.R
 import com.example.shopchain.model.Products
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
-class ProductsAdapter(val context: Context, val productList: ArrayList<Products>):
+class ProductsAdapter(val context: Context, val productList: ArrayList<Products>, val check: Int = 0):
         RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -42,6 +45,41 @@ class ProductsAdapter(val context: Context, val productList: ArrayList<Products>
             Glide.with(context).load(prod.pImageUrl).into(holder.imgProduct)
         } else {
             holder.imgProduct.setImageResource(R.drawable.default_prod_image)
+        }
+
+        holder.itemView.setOnClickListener {
+            if (check == 1) {
+                val uid = FirebaseAuth.getInstance().uid ?: ""
+                val ref = FirebaseDatabase.getInstance().getReference("/products/$uid/${prod.pid}")
+                val options = arrayOf<CharSequence>(context.resources.getString(R.string.in_stock), context.resources.getString(R.string.out_of_stock))
+                val optionDialog = android.app.AlertDialog.Builder(context)
+                optionDialog.setTitle("Set Availability")
+                optionDialog.setItems(options, { dialog, item ->
+                    if (options[item] == context.resources.getString(R.string.in_stock)) {
+                        ref.child("pStatus").setValue(true)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Saved!!", Toast.LENGTH_SHORT).show()
+                                    holder.txtProductStatusAvailable.visibility = View.VISIBLE
+                                    holder.txtProductStatusUnavailable.visibility = View.GONE
+                                 }
+                                .addOnFailureListener {
+                                    Toast.makeText(context, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
+                                }
+                    } else if (options[item] == context.resources.getString(R.string.out_of_stock)) {
+                        ref.child("pStatus").setValue(false)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Saved!!", Toast.LENGTH_SHORT).show()
+                                    holder.txtProductStatusAvailable.visibility = View.GONE
+                                    holder.txtProductStatusUnavailable.visibility = View.VISIBLE
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(context, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
+                                }
+                    }
+                })
+                optionDialog.create()
+                optionDialog.show()
+            }
         }
     }
 

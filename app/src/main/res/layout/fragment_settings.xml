@@ -101,18 +101,6 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/txtChangePassword"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            style="@style/viewParent.headerText.settingsTextIcon"
-            android:layout_marginTop="10dp"
-            android:text="@string/change_password"
-            app:drawableStartCompat="@drawable/ic_baseline_lock_24"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"/>
-
-        <TextView
             android:id="@+id/txtMyChats"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"

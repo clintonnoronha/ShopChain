@@ -79,5 +79,7 @@ class CountryCodes {
                 "Repair and Services",
                 "Restaurant", "Shopping"
         )
+
+        val ratings = arrayOf("1", "2", "3", "4", "5")
     }
 }

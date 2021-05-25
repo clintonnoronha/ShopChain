@@ -11,7 +11,6 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/llStore"
         android:layout_alignParentTop="true">
 
         <RelativeLayout
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarStoreDetails"
+                android:id="@+id/toolbarStore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
@@ -30,7 +29,7 @@
                 android:id="@+id/bbContent"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_below="@id/toolbarStoreDetails"
+                android:layout_below="@id/toolbarStore"
                 android:orientation="horizontal"
                 android:weightSum="6">
 
@@ -58,7 +57,10 @@
                         android:textSize="18sp"
                         android:textColor="@color/black"
                         android:padding="4dp"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"/>
 
                     <ScrollView
                         android:layout_width="match_parent"
@@ -72,7 +74,10 @@
                             tools:text="Welcome to Nike Showroom. You can get the latest sports equipments here."
                             android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:padding="4dp"/>
+                            android:padding="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"/>
 
                     </ScrollView>
 
@@ -92,48 +97,6 @@
                         android:gravity="center"
                         android:padding="5dp"
                         app:drawableLeftCompat="@drawable/ic_baseline_star_rate_24" />
-
-                    <ImageButton
-                        android:id="@+id/imgBtnSave"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_add_24"
-                        android:layout_above="@id/txtSave"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"/>
-
-                    <TextView
-                        android:id="@+id/txtSave"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_alignParentBottom="true"
-                        android:text="@string/save"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-
-                    <ImageButton
-                        android:id="@+id/imgBtnUnsave"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_done_24"
-                        android:layout_above="@id/txtUnsave"
-                        android:visibility="gone"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"/>
-
-                    <TextView
-                        android:id="@+id/txtUnsave"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_alignParentBottom="true"
-                        android:visibility="gone"
-                        android:text="@string/unsave"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
 
                 </RelativeLayout>
 
@@ -184,6 +147,8 @@
                     tools:text="Open"
                     android:textColor="@color/opened"
                     app:drawableStartCompat="@drawable/ic_outline_status_24"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground"/>
 
                 <TextView
@@ -193,6 +158,8 @@
                     style="@style/viewParent.headerText.settingsTextIcon"
                     tools:text="Timings: 9:00 am - 10:00 pm (MON - SUN)"
                     app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="?attr/selectableItemBackground"/>
 
                 <TextView
@@ -237,7 +204,7 @@
                 android:layout_below="@+id/txtStatic4"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerProducts"
+                android:id="@+id/recyclerManageProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtStatic4"
@@ -251,13 +218,13 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@color/gray"
-                android:layout_below="@+id/recyclerProducts"/>
+                android:layout_below="@+id/recyclerManageProducts"/>
 
             <RelativeLayout
                 android:id="@+id/rlReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerProducts">
+                android:layout_below="@id/recyclerManageProducts">
 
                 <TextView
                     android:id="@+id/txtStatic5"
@@ -270,16 +237,6 @@
                     android:layout_centerInParent="true"
                     android:padding="5dp"/>
 
-                <ImageButton
-                    android:id="@+id/imgBtnReview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_baseline_edit_24"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"/>
-
             </RelativeLayout>
 
             <View
@@ -291,7 +248,7 @@
                 android:layout_below="@+id/rlReview"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerReviews"
+                android:id="@+id/recyclerManageReviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rlReview"
@@ -302,44 +259,6 @@
         </RelativeLayout>
 
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/llStore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:weightSum="1">
-
-        <Button
-            android:id="@+id/btnCallNow"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_height="wrap_content"
-            android:text="@string/call_now"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:background="@drawable/ripple_effect"/>
-
-        <Button
-            android:id="@+id/btnChatNow"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_height="wrap_content"
-            android:text="@string/chat_now"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:background="@drawable/ripple_effect"/>
-
-    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/progressLayout"
@@ -357,7 +276,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rlWriteReview"
+        android:id="@+id/rlEditDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -375,46 +294,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Write a review"
+                android:text="Edit Details"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <Spinner
-                android:id="@+id/spnSelectRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
-                android:visibility="visible"
-                android:layout_margin="8dp"
-                android:layout_alignParentEnd="true"/>
-
             <EditText
-                android:id="@+id/etTitle"
+                android:id="@+id/etEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_below="@id/txtStatic3"
                 android:padding="10dp"
                 android:inputType="text"
                 android:textSize="14sp"
-                android:maxLines="1"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/etReview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Describe your experience (max 200 words)"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_below="@id/etTitle"
-                android:padding="10dp"
-                android:inputType="text"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:maxLength="200"/>
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/btnSubmit"
@@ -423,7 +317,7 @@
                 android:text="Submit"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:layout_below="@id/etReview"
+                android:layout_below="@id/etEdit"
                 android:textSize="12sp"
                 android:textColor="@color/white"
                 android:layout_alignParentEnd="true" />
@@ -436,7 +330,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="15dp"
-                android:layout_below="@id/etReview"
+                android:layout_below="@id/etEdit"
                 android:layout_toStartOf="@id/btnSubmit"
                 android:textSize="12sp"
                 android:textColor="@color/white"/>

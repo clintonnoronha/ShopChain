@@ -2,12 +2,14 @@ package com.example.shopchain.ui.main
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
@@ -23,6 +25,11 @@ import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.IOException
 import java.util.*
 
 class CreateBusinessAccountActivity : AppCompatActivity() {
@@ -31,6 +38,7 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
     lateinit var etStoreName: EditText
     lateinit var etStoreContactNumber: EditText
     lateinit var etStoreAddress: EditText
+    lateinit var imgStore: CircleImageView
     lateinit var imgBtnShowMap: ImageButton
     lateinit var btnFinishSetup: Button
     lateinit var spnStoreCategory: Spinner
@@ -41,13 +49,17 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
     private var longitude: Double? = null
     private var city: String? = null
     private var country: String? = null
-    private val PERMISSION_ID = 52
+    private val PERMISSION_ID_LOC = 52
+    private val PERMISSION_ID_STORAGE = 50
+    private val OPEN_IMAGE_STORAGE = 51
+    private var selectedPhotoUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_business_account)
 
         fabSelectPhoto = findViewById(R.id.fabSelectPhoto)
+        imgStore = findViewById(R.id.imgStore)
         etStoreName = findViewById(R.id.et_shop_name)
         etStoreContactNumber = findViewById(R.id.et_shop_contact_number)
         etStoreAddress = findViewById(R.id.et_shop_address)
@@ -74,6 +86,10 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Code to perform some action when nothing is selected
             }
+        }
+
+        fabSelectPhoto.setOnClickListener {
+            browseGallery()
         }
 
         // Get latitude and longitude of shop location
@@ -104,6 +120,16 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
                     .show()
             }
 
+        }
+    }
+
+    private fun browseGallery() {
+        if (checkPermissionStorage()) {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, OPEN_IMAGE_STORAGE)
+        } else {
+            requestPermissionStorage()
         }
     }
 
@@ -157,18 +183,48 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
     }
 
     private fun setupShop() {
+        uploadImageToFirebaseStorage()
+    }
+
+    private fun uploadImageToFirebaseStorage() {
+        if (selectedPhotoUri == null) {
+            saveUserToFirebaseDatabase("")
+            return
+        }
+
+        val filename = "profile_image"
+        val  uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseStorage.getInstance().getReference("/images/$uid/$filename")
+
+        //upload image to firebase storage
+        ref.putFile(selectedPhotoUri!!)
+                .addOnSuccessListener {
+                    Log.d("LogCheck", "Photo uploaded Successfully : ${it.metadata?.path}")
+                    ref.downloadUrl
+                            .addOnSuccessListener {
+                                Log.d("LogCheck", "File Location : $it")
+                                saveUserToFirebaseDatabase(it.toString())
+                            }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to upload image! Please Try Again", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun saveUserToFirebaseDatabase(url: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/shops/$uid")
         val shop = Shops(
-            sid = uid,
-            shopName = etStoreName.text.toString(),
-            shopType = type!!,
-            mobile = etStoreContactNumber.text.toString(),
-            address = etStoreAddress.text.toString(),
-            lat = latitude,
-            long = longitude,
-            city = city!!,
-            country = country!!
+                sid = uid,
+                shopName = etStoreName.text.toString(),
+                shopType = type!!,
+                mobile = etStoreContactNumber.text.toString(),
+                address = etStoreAddress.text.toString(),
+                shopImageUrl = url,
+                lat = latitude,
+                long = longitude,
+                city = city!!,
+                country = country!!
         )
         ref.setValue(shop).addOnSuccessListener {
             Log.d("LogCheck", "Shop registered to Firebase Database")
@@ -176,15 +232,15 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
             reff.child("shopOwner").setValue(true).addOnSuccessListener {
                 Toast.makeText(this, "You're now a Store Owner!", Toast.LENGTH_SHORT).show()
             }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
-                }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
+                    }
             reff.child("usid").setValue(uid).addOnSuccessListener {
                 //Toast.makeText(this, "You're now a Store Owner!", Toast.LENGTH_SHORT).show()
             }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
-                }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
+                    }
             startActivity(Intent(this, HomeActivity::class.java))
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             finish()
@@ -209,8 +265,27 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
         return false
     }
 
+    private fun checkPermissionStorage(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                        this,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                        this,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_ID)
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_ID_LOC)
+    }
+
+    private fun requestPermissionStorage() {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), PERMISSION_ID_STORAGE)
     }
 
     private fun isLocationEnabled(): Boolean {
@@ -223,9 +298,45 @@ class CreateBusinessAccountActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (requestCode == PERMISSION_ID) {
+        if (requestCode == PERMISSION_ID_LOC) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+            }
+        } else if (requestCode == PERMISSION_ID_STORAGE) {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, OPEN_IMAGE_STORAGE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == OPEN_IMAGE_STORAGE && data != null && resultCode == Activity.RESULT_OK) {
+            //proceed and check which image was selected...
+            try {
+                selectedPhotoUri = data.data
+                CropImage.activity(selectedPhotoUri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1, 1)
+                        .start(this)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == Activity.RESULT_OK){
+                selectedPhotoUri = result.uri
+                imgStore.setImageURI(selectedPhotoUri)
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                val error = result.error
+                Toast.makeText(
+                        this,
+                        "Some error occurred, please try again later.",
+                        Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

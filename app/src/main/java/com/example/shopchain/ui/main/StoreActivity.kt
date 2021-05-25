@@ -4,20 +4,16 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
 import com.example.shopchain.R
-import com.example.shopchain.adapter.LikedStoresAdapter
 import com.example.shopchain.adapter.ProductsAdapter
 import com.example.shopchain.adapter.ReviewsAdapter
-import com.example.shopchain.model.LikedShops
-import com.example.shopchain.model.Products
-import com.example.shopchain.model.Reviews
-import com.example.shopchain.model.User
+import com.example.shopchain.model.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,6 +26,7 @@ class StoreActivity : AppCompatActivity() {
     lateinit var btnChatNow: Button
     lateinit var imgBtnSave: ImageButton
     lateinit var imgBtnUnsave: ImageButton
+    lateinit var imgBtnReview: ImageView
     lateinit var txtSave: TextView
     lateinit var txtUnsave: TextView
     lateinit var txtStoreName: TextView
@@ -40,6 +37,12 @@ class StoreActivity : AppCompatActivity() {
     lateinit var txtStoreAddress: TextView
     lateinit var txtStoreStatus: TextView
     lateinit var toolbar: Toolbar
+    lateinit var spnRating: Spinner
+    lateinit var etTitle: EditText
+    lateinit var etReview: EditText
+    lateinit var btnSubmit: Button
+    lateinit var btnCancel: Button
+    lateinit var rlWriteReview: RelativeLayout
     private var storeNumber: String? = null
     private var storeName: String? = null
     private var storeId: String? = null
@@ -60,6 +63,8 @@ class StoreActivity : AppCompatActivity() {
     lateinit var recyclerReviews: RecyclerView
     private val reviewList = ArrayList<Reviews>()
     lateinit var revAdapter: ReviewsAdapter
+    private var rating: String? = ""
+    private var flag = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,14 +92,41 @@ class StoreActivity : AppCompatActivity() {
         txtStoreTiming = findViewById(R.id.txtTimings)
         txtStoreAddress = findViewById(R.id.txtAddress)
         txtStoreStatus = findViewById(R.id.txtStoreStatus)
+        spnRating = findViewById(R.id.spnSelectRating)
+        rlWriteReview = findViewById(R.id.rlWriteReview)
+        btnSubmit = findViewById(R.id.btnSubmit)
+        btnCancel = findViewById(R.id.btnCancel)
+        etTitle = findViewById(R.id.etTitle)
+        etReview = findViewById(R.id.etReview)
         recyclerProducts = findViewById(R.id.recyclerProducts)
         recyclerReviews = findViewById(R.id.recyclerReviews)
         imgBtnSave = findViewById(R.id.imgBtnSave)
         imgBtnUnsave = findViewById(R.id.imgBtnUnsave)
+        imgBtnReview = findViewById(R.id.imgBtnReview)
         txtSave = findViewById(R.id.txtSave)
         txtUnsave = findViewById(R.id.txtUnsave)
         toolbar = findViewById(R.id.toolbarStoreDetails)
         uid = FirebaseAuth.getInstance().uid ?: ""
+
+        val arrayAdapter =
+                ArrayAdapter(this, android.R.layout.simple_spinner_item, CountryCodes.ratings)
+        spnRating.adapter = arrayAdapter
+        spnRating.setSelection(arrayAdapter.getPosition("5"))
+
+        spnRating.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+            ) {
+                rating = CountryCodes.ratings.get(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Code to perform some action when nothing is selected
+            }
+        }
 
         loadDetails()
 
@@ -171,6 +203,43 @@ class StoreActivity : AppCompatActivity() {
                     }
         }
 
+        imgBtnReview.setOnClickListener {
+            rlWriteReview.visibility = View.VISIBLE
+        }
+
+        btnCancel.setOnClickListener {
+            rlWriteReview.visibility = View.GONE
+        }
+
+        btnSubmit.setOnClickListener {
+            val title = etTitle.text.toString()
+            val review = etReview.text.toString()
+            if (title.isNotBlank() && review.isNotBlank() && rating != "") {
+                submitReview(title, review, rating!!)
+            } else {
+                Toast.makeText(this,
+                        "Please fill in all details.",
+                        Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
+    }
+
+    private fun submitReview(title: String, review: String, rating: String) {
+        val ref = FirebaseDatabase.getInstance().getReference("/reviews/$storeId/$uid")
+        val rev = Reviews(
+                uid = uid!!,
+                title = title,
+                review = review,
+                rating = rating
+        )
+        ref.setValue(rev).addOnSuccessListener {
+            Toast.makeText(this, "Review Uploaded!", Toast.LENGTH_SHORT).show()
+            rlWriteReview.visibility = View.GONE
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed! Try again later.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun loadDetails() {
@@ -184,10 +253,7 @@ class StoreActivity : AppCompatActivity() {
         txtStoreStatus.text = storeStatus
         if (storeStatus == "Closed") {
             txtStoreStatus.setTextColor(resources.getColor(R.color.closed))
-        } else {
-
         }
-
         txtStoreTiming.text = storeTiming
         txtStoreAddress.text = storeAddress
         if (storeImage!!.isNotBlank()) {
@@ -217,6 +283,7 @@ class StoreActivity : AppCompatActivity() {
         })
 
         ref = FirebaseDatabase.getInstance().getReference("/products/$storeId")
+        Log.d("Check", "load products and reviews, path = ${ref.ref}")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
@@ -251,6 +318,5 @@ class StoreActivity : AppCompatActivity() {
                 }
             }
         })
-
     }
 }
